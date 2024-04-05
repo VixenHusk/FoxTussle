@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,7 +16,7 @@ public class PlayerController : MonoBehaviour
         float movimientoH = Input.GetAxis("Horizontal");
         float movimientoV = Input.GetAxis("Vertical");
 
-        // Obtener la c�mara principal para ajustar el movimiento a la perspectiva isom�trica
+        // Obtener la cámara principal para ajustar el movimiento a la perspectiva isométrica
         Camera mainCamera = Camera.main;
         Vector3 cameraForward = mainCamera.transform.forward;
         Vector3 cameraRight = mainCamera.transform.right;
@@ -27,10 +25,10 @@ public class PlayerController : MonoBehaviour
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        // Calcular el vector de movimiento en funci�n de la vista isom�trica de la c�mara
+        // Calcular el vector de movimiento en función de la vista isométrica de la cámara
         Vector3 movimiento = cameraForward * movimientoV + cameraRight * movimientoH;
 
-        // Verificar si no se est� presionando ninguna tecla de movimiento
+        // Verificar si no se está presionando ninguna tecla de movimiento
         if (Mathf.Approximately(movimiento.magnitude, 0.0f))
         {
             // Detener el movimiento estableciendo la velocidad a cero
@@ -41,6 +39,27 @@ public class PlayerController : MonoBehaviour
             // Aplicar la velocidad directamente sin inercia
             rb.velocity = movimiento * velocidad;
         }
+    }
+
+    public Vector3 GetMovementDirection()
+    {
+        float movimientoH = Input.GetAxis("Horizontal");
+        float movimientoV = Input.GetAxis("Vertical");
+
+        // Obtener la cámara principal para ajustar el movimiento a la perspectiva isométrica
+        Camera mainCamera = Camera.main;
+        Vector3 cameraForward = mainCamera.transform.forward;
+        Vector3 cameraRight = mainCamera.transform.right;
+        cameraForward.y = 0f; // Asegurar que no haya movimiento vertical
+        cameraRight.y = 0f; // Asegurar que no haya movimiento vertical
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        // Calcular el vector de movimiento en función de la vista isométrica de la cámara
+        Vector3 movimiento = cameraForward * movimientoV + cameraRight * movimientoH;
+
+        // Devolver el vector de movimiento
+        return movimiento;
     }
 }
 

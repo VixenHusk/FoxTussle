@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4651548702891464267}
   - component: {fileID: 1775266769294951959}
   - component: {fileID: 2393456441828224400}
+  - component: {fileID: 7674896642195125862}
   m_Layer: 0
   m_Name: AreaDMG
   m_TagString: Untagged
@@ -103,5 +104,18 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7674896642195125862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7660448584469598348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5189fa9f4e6149d48b324e8f5d039999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pupa: 50

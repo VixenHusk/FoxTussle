@@ -10,13 +10,27 @@ public class GameManager : MonoBehaviour
     //Atributos del juego
     public float salud;
     public int saludMaxima;
+    public int nivel = 1;
+    public float experiencia = 0;
+    public float experienciaParaSiguienteNivel = 100;
+
+    //Puntuacion
     public int puntuacion = 0;
     public int puntuacionMaxima = 0;
 
+
     //ESTO SE PUEDE HACER CON EVENTOS
+
+    //Interfaz
     public Image imageVida;
+    public Image imageExp;
     public TextMeshProUGUI textoPuntuacion;
     public TextMeshProUGUI textoPuntuacionMaxima;
+    public TextMeshProUGUI textoNivel;
+    public TextMeshProUGUI textoExperiencia;
+
+
+    public GameObject levelPanel;
 
     public List<GameObject> objetosAActivarCuandoGameOver;
 
@@ -26,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         //InicializarPuntuacion();
         ActualizarBarraDeSalud();
+        ActualizarBarraDeExperiencia();
     }
     private void Update()
     {
@@ -56,6 +71,18 @@ public class GameManager : MonoBehaviour
         imageVida.fillAmount = salud / 100;
     }
 
+    private void ActualizarBarraDeExperiencia()
+    {
+        while (experiencia >= experienciaParaSiguienteNivel)
+        {
+            SubirNivel(); // Subir de nivel mientras haya suficiente experiencia para el siguiente nivel
+        }
+
+        imageExp.fillAmount = experiencia / experienciaParaSiguienteNivel;
+        textoNivel.text = "Level " + nivel.ToString();
+        textoExperiencia.text = experiencia.ToString() + " / " + experienciaParaSiguienteNivel.ToString();
+    }
+
    /* public void Puntuar(int puntuacion)
     {
         this.puntuacion += puntuacion;
@@ -76,6 +103,57 @@ public class GameManager : MonoBehaviour
             print("Se acabo el juego");
             //TerminarJuego();
         }
+        ActualizarBarraDeSalud();
+    }
+
+    public void GanarExperiencia(int cantidad)
+    {
+        experiencia += cantidad;
+        if (experiencia >= experienciaParaSiguienteNivel)
+        {
+            SubirNivel();
+        }
+        ActualizarBarraDeExperiencia();
+    }
+
+    private void SubirNivel()
+    {
+        PauseGame();
+        nivel++;
+        experiencia -= experienciaParaSiguienteNivel;
+        experienciaParaSiguienteNivel *= 2; // Ajusta esta fórmula según tus necesidades
+        // Aquí podrías implementar aumentos en salud máxima u otras estadísticas del jugador al subir de nivel
+    }
+
+    
+    void PauseGame()
+    {
+        levelPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        levelPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OptionSelected()
+    {
+        ResumeGame();
+    }
+
+
+    public void PowerUpHealthMax()
+    {
+        saludMaxima = saludMaxima + 50;
+        salud = salud + 50;
+        ActualizarBarraDeSalud();
+    }
+
+        public void PowerUpHealing()
+    {
+        salud = salud + 25;
         ActualizarBarraDeSalud();
     }
 /*

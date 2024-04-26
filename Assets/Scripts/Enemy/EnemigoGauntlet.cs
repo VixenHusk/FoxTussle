@@ -14,7 +14,6 @@ public class EnemigoGauntlet : MonoBehaviour
         transformPlayer = GameObject.FindGameObjectWithTag(targetTag).transform;
         vidaEnemigo = GetComponent<EnemigoHealthManager>();
     }
-
     // Update is called once per frame
     void Update()
     {

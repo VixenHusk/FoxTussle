@@ -206,9 +206,8 @@ GameObject:
   - component: {fileID: 5313718464308500101}
   - component: {fileID: 2904948661153620384}
   - component: {fileID: 4017200962831261809}
-  - component: {fileID: 8577901146141683461}
-  - component: {fileID: 5075829599776321847}
   - component: {fileID: 610531363106816356}
+  - component: {fileID: 8577901146141683461}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Enemy
@@ -282,35 +281,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8577901146141683461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496088321035323391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17f73bf0691fca846b15e9f9cff9c300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3.5
-  targetTag: Player
---- !u!114 &5075829599776321847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496088321035323391}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8cd23e0f5b4864db484d92ea071dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanciaAtaque: 4
-  distanciaAlejarse: 6
-  playerTag: Player
 --- !u!114 &610531363106816356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,8 +296,23 @@ MonoBehaviour:
   prefabObjetoReemplazo: {fileID: 4648562545236596509, guid: a6dec168bf32a2446999ae0dfa78570f,
     type: 3}
   animatorController: {fileID: 7252649024409707664}
+  gameManager: {fileID: 0}
   salud: 100
   isDead: 0
+--- !u!114 &8577901146141683461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496088321035323391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f73bf0691fca846b15e9f9cff9c300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
+  targetTag: Player
 --- !u!1 &1293939764920579628
 GameObject:
   m_ObjectHideFlags: 0

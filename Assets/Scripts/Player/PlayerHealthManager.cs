@@ -7,27 +7,29 @@ public class PlayerHealthManager : MonoBehaviour
 {
     private GameManager gameManager;
     private Animator animator;
+    private bool muerteReproducida = false;
     void Start(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponentInChildren<Animator>();
     }
-    //FALTA PARAR DE ACTIVAR EL TRIGGER DE MORIR
-    public void RecibirPupa(int pupa){
+    public void RecibirPupa(int pupa)
+    {
         Rigidbody rb = GetComponent<Rigidbody>();
         gameManager.DecrementarSalud(pupa);
-        print(gameManager.salud);
         if (gameManager.salud == 0)
         {
             print("La vida del jugador es 0");
-            rb.isKinematic = true;
-            animator.SetTrigger("Die");
-            MonoBehaviour[] mb = GetComponentsInChildren<MonoBehaviour>();
-            foreach (MonoBehaviour m in mb)
+            if (!muerteReproducida) // Verifica si la animación de muerte aún no se ha reproducido
             {
-                m.enabled = false;
+                rb.isKinematic = true;
+                animator.SetTrigger("Die");
+                muerteReproducida = true; // Marca la animación de muerte como reproducida
+                MonoBehaviour[] mb = GetComponentsInChildren<MonoBehaviour>();
+                foreach (MonoBehaviour m in mb)
+                {
+                    m.enabled = false;
+                }
             }
-            
         }
     }
-
 }

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoExperiencia;
 
-
+    public PlayerController playerController;
     public GameObject levelPanel;
 
     public List<GameObject> objetosAActivarCuandoGameOver;
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         ActualizarBarraDeSalud();
         ActualizarBarraDeExperiencia();
     }
+
     private void Update()
     {
         if (salud == 0)
@@ -138,24 +139,29 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OptionSelected()
-    {
-        ResumeGame();
-    }
-
-
     public void PowerUpHealthMax()
     {
         saludMaxima = saludMaxima + 50;
         salud = salud + 50;
         ActualizarBarraDeSalud();
+        ResumeGame();
     }
 
-        public void PowerUpHealing()
+    public void PowerUpHealing()
     {
         salud = salud + 25;
         ActualizarBarraDeSalud();
+        ResumeGame();
     }
+
+    public void PowerUpSpeed()
+    {
+        // Modificar la velocidad de correr en el PlayerController
+        playerController.velocidadCaminar += playerController.velocidadCaminar *0.05f;
+        playerController.velocidadCorrer += playerController.velocidadCorrer *0.05f;
+        ResumeGame();
+    }
+
 /*
     public void TerminarJuego()
     {

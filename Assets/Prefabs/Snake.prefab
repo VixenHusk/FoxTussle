@@ -293,10 +293,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda275e2762bb5f4b956d1c43407c9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObjetoReemplazo: {fileID: 4648562545236596509, guid: a6dec168bf32a2446999ae0dfa78570f,
-    type: 3}
   animatorController: {fileID: 7252649024409707664}
   gameManager: {fileID: 0}
+  itemPrefab: {fileID: 6909959677962603397, guid: 11a0c257ce7bc51408cc8e0668e4eb15,
+    type: 3}
+  dropProbability: 0.5
   salud: 100
   isDead: 0
 --- !u!114 &8577901146141683461

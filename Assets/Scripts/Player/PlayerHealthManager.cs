@@ -18,13 +18,29 @@ public class PlayerHealthManager : MonoBehaviour
         gameManager.DecrementarSalud(pupa);
         if (gameManager.salud == 0)
         {
-            print("La vida del jugador es 0");
             if (!muerteReproducida) // Verifica si la animación de muerte aún no se ha reproducido
             {
+                // Buscar un GameObject hijo por su nombre
+                Transform childTransform = transform.Find("AreaDMG(Clone)");
+
+                // Verificar si se encontró el GameObject hijo
+                if (childTransform != null)
+                {
+                    // Destruir el GameObject hijo
+                    Destroy(childTransform.gameObject);
+                    Debug.Log("Se elimino el GameObject hijo: " + childTransform.name);
+                }
+                else
+                {
+                    // El GameObject hijo no fue encontrado
+                    Debug.LogWarning("No estaba atacando mientras moria");
+                }
+
                 rb.isKinematic = true;
                 animator.SetTrigger("Die");
                 muerteReproducida = true; // Marca la animación de muerte como reproducida
-                MonoBehaviour[] mb = GetComponentsInChildren<MonoBehaviour>();
+                
+                MonoBehaviour[] mb = GetComponentsInChildren<MonoBehaviour>();  // En teoria, desabilita todos los componentes del jugador
                 foreach (MonoBehaviour m in mb)
                 {
                     m.enabled = false;

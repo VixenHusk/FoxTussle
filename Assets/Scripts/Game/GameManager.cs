@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public int nivel = 1;
     public float experiencia = 0;
     public float experienciaParaSiguienteNivel = 100;
+    public float distanciaAtraccion = 8;
 
-    //Puntuacion
-    public int puntuacion = 0;
+    //Valor monedas
+    public int valor;
     public int puntuacionMaxima = 0;
 
 
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     //Interfaz
     public Image imageVida;
     public Image imageExp;
-    public TextMeshProUGUI textoPuntuacion;
+    public TextMeshProUGUI textoMonedas;
     public TextMeshProUGUI textoPuntuacionMaxima;
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoExperiencia;
@@ -34,11 +35,11 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> objetosAActivarCuandoGameOver;
 
-    private static string KEY_HIGHSCORE = "HIGHSCORE";
+    private static string KEY_COINS = "COINS";
 
     private void Awake()
     {
-        //InicializarPuntuacion();
+        InicializarMonedas();
         ActualizarBarraDeSalud();
         ActualizarBarraDeExperiencia();
     }
@@ -53,20 +54,21 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    /*private void InicializarPuntuacion()
+    
+    private void InicializarMonedas()
     {
-        puntuacion = 0;
-        if (PlayerPrefs.HasKey(KEY_HIGHSCORE))
+        if (PlayerPrefs.HasKey(KEY_COINS))
         {
-            puntuacionMaxima = PlayerPrefs.GetInt(KEY_HIGHSCORE);
+
+            valor = PlayerPrefs.GetInt(KEY_COINS);
         }
         else
         {
-            puntuacionMaxima = 0;
+
+            valor = 0;
         }
-        textoPuntuacion.text = puntuacion.ToString();
-        textoPuntuacionMaxima.text = puntuacionMaxima.ToString();
-    }*/
+        textoMonedas.text = valor.ToString();
+    }
     private void ActualizarBarraDeSalud()
     {
         imageVida.fillAmount = salud / 100;
@@ -84,11 +86,11 @@ public class GameManager : MonoBehaviour
         textoExperiencia.text = experiencia.ToString() + " / " + experienciaParaSiguienteNivel.ToString();
     }
 
-   /* public void Puntuar(int puntuacion)
+    public void Monedas(int valor)
     {
-        this.puntuacion += puntuacion;
-        this.textoPuntuacion.text = this.puntuacion.ToString();
-    }*/
+        this.valor += valor;
+        this.textoMonedas.text = this.valor.ToString();
+    }
 
     public void DecrementarSalud(int decrementoSalud)
     {
@@ -102,7 +104,7 @@ public class GameManager : MonoBehaviour
         {
             salud = 0;
             print("Se acabo el juego");
-            //TerminarJuego();
+            TerminarJuego();
         }
         ActualizarBarraDeSalud();
     }
@@ -162,19 +164,26 @@ public class GameManager : MonoBehaviour
         ResumeGame();
     }
 
-/*
+    public void PowerUpAttraction()
+    {
+        print(distanciaAtraccion);
+        distanciaAtraccion += distanciaAtraccion * 0.5f;
+        print(distanciaAtraccion);
+        ResumeGame();
+    }
     public void TerminarJuego()
     {
         foreach (GameObject objeto in objetosAActivarCuandoGameOver)
         {
             objeto.SetActive(true);
         }
-        if (puntuacion > puntuacionMaxima)
-        {
-            PlayerPrefs.SetInt(KEY_HIGHSCORE, puntuacion);
+
+            PlayerPrefs.SetInt(KEY_COINS, valor);
+
             PlayerPrefs.Save();
-        }
-    }*/
+
+    }
+
     public void ReiniciarJuego()
     {
         SceneManager.LoadScene(0);

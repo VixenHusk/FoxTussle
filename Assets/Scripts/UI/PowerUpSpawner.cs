@@ -109,8 +109,8 @@ public class PowerUpSpawner : MonoBehaviour
                     case 2: // PowerUpSpeed
                         manager.PowerUpSpeed();
                         break;
-                    case 3: // PowerUpSpeed
-                        manager.PowerUpSpeed();
+                    case 3: // PowerUpAttraction
+                        manager.PowerUpAttraction();
                         break;
                     case 4: // PowerUpSpeed
                         manager.PowerUpSpeed();

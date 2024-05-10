@@ -98,6 +98,7 @@ public class PowerUpSpawner : MonoBehaviour
             GameManager manager = gameManager.GetComponent<GameManager>();
             if (manager != null)
             {
+                /*Original
                 switch (index)
                 {
                     case 0: // PowerUpHealthMax
@@ -112,8 +113,30 @@ public class PowerUpSpawner : MonoBehaviour
                     case 3: // PowerUpAttraction
                         manager.PowerUpAttraction();
                         break;
-                    case 4: // PowerUpSpeed
-                        manager.PowerUpSpeed();
+                    case 4: // FireOrb
+                        manager.PowerUpFireOrb();
+                        break;
+                    default:
+                        Debug.LogWarning("Índice de power-up no válido.");
+                        break;
+                }
+                */
+                                switch (index)
+                {
+                    case 0: // PowerUpHealthMax
+                        manager.PowerUpFireOrb();
+                        break;
+                    case 1: // PowerUpHealing
+                        manager.PowerUpFireOrb();
+                        break;
+                    case 2: // PowerUpSpeed
+                        manager.PowerUpFireOrb();
+                        break;
+                    case 3: // PowerUpAttraction
+                        manager.PowerUpFireOrb();
+                        break;
+                    case 4: // FireOrb
+                        manager.PowerUpFireOrb();
                         break;
                     default:
                         Debug.LogWarning("Índice de power-up no válido.");

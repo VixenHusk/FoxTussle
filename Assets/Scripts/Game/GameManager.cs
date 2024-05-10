@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> objetosAActivarCuandoGameOver;
 
+    public GameObject prefabSistemaParticulas;
+    public GameObject foxGameObject;
+
+    // POWER UPS - que agregan efectos
+    public fireOrbs fireOrbsScript;
+
     private static string KEY_COINS = "COINS";
 
     private void Awake()
@@ -125,7 +131,9 @@ public class GameManager : MonoBehaviour
         nivel++;
         experiencia -= experienciaParaSiguienteNivel;
         experienciaParaSiguienteNivel *= 2; // Ajusta esta fórmula según tus necesidades
-        // Aquí podrías implementar aumentos en salud máxima u otras estadísticas del jugador al subir de nivel
+        // Instanciar el prefab del sistema de partículas
+        GameObject particulas = Instantiate(prefabSistemaParticulas, foxGameObject.transform.position, Quaternion.identity);
+
     }
 
     
@@ -171,6 +179,21 @@ public class GameManager : MonoBehaviour
         print(distanciaAtraccion);
         ResumeGame();
     }
+
+    public void PowerUpFireOrb(){
+        // Llamar al método FireOrb del script fireOrbs
+        if (fireOrbsScript != null)
+        {
+            fireOrbsScript.FireOrb();
+            print("ha entrado"); 
+            ResumeGame();
+        }
+        else
+        {
+            Debug.LogError("No se ha asignado el script fireOrbs en el Inspector.");
+        }
+    }
+
     public void TerminarJuego()
     {
         foreach (GameObject objeto in objetosAActivarCuandoGameOver)

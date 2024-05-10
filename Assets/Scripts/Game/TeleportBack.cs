@@ -3,7 +3,6 @@ using UnityEngine;
 public class TeleportBack : MonoBehaviour
 {
     public string shrineDoorName = "ShrineDoor"; // Nombre del GameObject que actúa como puerta del santuario
-    public GameObject playerCamera; // Referencia a la cámara que sigue al jugador
 
     private void OnTriggerEnter(Collider other)
     {

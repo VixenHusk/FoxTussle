@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class spawner : MonoBehaviour
 {
-        public GameObject enemy;
-        public int numeroElementos;
-        public int tiempoEntreSpawn;
-        private int contador = 0;
-        // Start is called before the first frame update
-        void Start()
-        {
-            InvokeRepeating("Spawn", tiempoEntreSpawn, tiempoEntreSpawn);
-        }
+    public GameObject enemyPrefab;
+    public GameObject enemiesParent;
+    public int numeroElementos;
+    public int tiempoEntreSpawn;
+    private int contador = 0;
 
-        // Update is called once per frame
-        void Spawn()
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("Spawn", tiempoEntreSpawn, tiempoEntreSpawn);
+    }
+
+    // Método para instanciar un enemigo y ajustar su posición
+    void Spawn()
+    {
+        contador++;
+        GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation, enemiesParent.transform);
+
+        if (contador >= numeroElementos)
         {
-            contador++;
-            Instantiate(enemy, transform);
-            if (contador >= numeroElementos)
-            {
-                CancelInvoke("Spawn");
-            }
+            CancelInvoke("Spawn");
         }
+    }
 }

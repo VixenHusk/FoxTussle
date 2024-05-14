@@ -17,6 +17,15 @@ public class DamageTailspin : MonoBehaviour
                 }
             }
 
+        if (other.CompareTag("EnemyAI"))
+            {
+                if (other.GetComponent<EnemigoHealthManagerAI>() != null){
+                        other.GetComponent<EnemigoHealthManagerAI>().HacerPupa(pupa);
+                } else {
+                    Debug.LogWarning("El enemigo no tiene el componente EnemigoHealthManagerAI");
+                }
+            }
+
     }
 
 }

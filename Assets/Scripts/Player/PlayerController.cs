@@ -9,10 +9,7 @@ public class PlayerController : MonoBehaviour
     public float velocidadCorrer = 12f;
     private float velocidadParado = 0f;
     private float velocidadActual;
-    // Variable para almacenar la velocidad actual
     public float VelocidadActual { get { return velocidadActual; } }
-
-    // Variable para controlar la suavidad del movimiento
     public float suavidadRotacion = 10f;
 
     void Start()
@@ -29,21 +26,19 @@ public class PlayerController : MonoBehaviour
         // Obtener la dirección del movimiento horizontal
         Vector3 movimientoDirection = GetMovementDirection();
 
-        // Verificar si el jugador está corriendo (Shift está presionado)
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && Input.GetKey(KeyCode.LeftShift))
         {
             velocidadActual = velocidadCorrer;
         }
         else if (movimientoH == 0 && movimientoV == 0)
         {
-            // Si no hay entrada de teclado, el jugador está parado
             velocidadActual = velocidadParado;
         }
         else
         {
             velocidadActual = velocidadCaminar;
         }
-        
+
         // Verificar si no se está presionando ninguna tecla de movimiento
         if (Mathf.Approximately(movimientoDirection.magnitude, 0.0f))
         {
@@ -52,8 +47,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Aplicar la velocidad directamente sin inercia
-            rb.velocity = movimientoDirection * velocidadActual;
+            // Calcular la nueva posición sin cambiar la componente Y
+            Vector3 newPosition = rb.position + movimientoDirection * velocidadActual * Time.fixedDeltaTime;
+            rb.MovePosition(newPosition);
         }
 
         // Orientar suavemente el jugador hacia la dirección del movimiento
@@ -69,19 +65,16 @@ public class PlayerController : MonoBehaviour
         float movimientoH = Input.GetAxis("Horizontal");
         float movimientoV = Input.GetAxis("Vertical");
 
-        // Obtener la cámara principal para ajustar el movimiento a la perspectiva isométrica
         Camera mainCamera = Camera.main;
         Vector3 cameraForward = mainCamera.transform.forward;
         Vector3 cameraRight = mainCamera.transform.right;
-        cameraForward.y = 0f; // Asegurar que no haya movimiento vertical
-        cameraRight.y = 0f; // Asegurar que no haya movimiento vertical
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        // Calcular el vector de movimiento en función de la vista isométrica de la cámara
         Vector3 movimiento = cameraForward * movimientoV + cameraRight * movimientoH;
 
-        // Devolver solo la dirección horizontal del movimiento
         return movimiento.normalized;
     }
 }

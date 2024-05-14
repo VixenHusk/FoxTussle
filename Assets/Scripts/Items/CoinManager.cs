@@ -32,7 +32,7 @@ public class CoinManager : MonoBehaviour
         }
         
         attractionDistance = gameManager.distanciaAtraccion;
-        Debug.Log("El valor de distanciaatraccion es: " + attractionDistance);
+        //Debug.Log("El valor de distancia atraccion es: " + attractionDistance);
         Destroy(gameObject, tiempoVida);
 
         // Encontrar el objeto del jugador al comienzo del juego

@@ -14,6 +14,7 @@ namespace SanBlasNPC
         public float attackDistance;
         private Transform target;
         private Animator animator;
+        private bool isDead = false;
     
 
         void Start()
@@ -24,6 +25,7 @@ namespace SanBlasNPC
 
 void Update()
 {
+    if (isDead) return; // Si el enemigo está muerto, no hacemos nada
     RaycastHit hitInfo;
     Vector3 raycastOrigin = transform.position + Vector3.up; // Assuming enemy's eyes are slightly above its position
     Vector3 raycastDirection = target.position - raycastOrigin;
@@ -83,6 +85,14 @@ void Update()
             animator.SetBool("Walking", false);
             ActivateNavMeshEnemy();
         }
+
+    public void Die()
+    {
+        isDead = true; // Marcar al enemigo como muerto
+        animator.SetTrigger("Death"); // Activar la animación de muerte
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Walking", false);
+    }
         private void ActivateNavMeshEnemy()
         {
             GetComponent<NPCNavMeshAnimatorManager>().enabled = true;
@@ -95,5 +105,6 @@ void Update()
             GetComponent<NPCPatrullajeManager>().enabled = false;
             GetComponent<NavMeshAgent>().enabled = false;
         }
+
     }
 }

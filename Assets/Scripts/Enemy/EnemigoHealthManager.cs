@@ -31,9 +31,15 @@ public class EnemigoHealthManager : MonoBehaviour
             Debug.LogError("No se ha encontrado el GameObject GameManager en la escena.");
         }
     }
+    void ActualizarSliderSalud()
+    {
+        sliderSalud.value = salud;
+    }
     public void HacerPupa(int pupa){
         salud-=pupa;
         sliderSalud.value = salud;
+        ActualizarSliderSalud();
+        //TODO meter en un Update??
         if (salud<=0){
             GanarExperienciaYDropItem();
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3929208185134013745}
   - component: {fileID: 3052872944551106220}
   - component: {fileID: 2343488411137867455}
+  - component: {fileID: 844601529020389748}
   m_Layer: 0
   m_Name: PlayerDetector
   m_TagString: Untagged
@@ -105,6 +106,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &844601529020389748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5873737254863188852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718269e0d97625f4192fe6b693b07e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  teleportDestinationName: TPTransform
 --- !u!1001 &1741983523351408787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,17 +131,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: af4d0271cc17db94393170be8710ee62,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af4d0271cc17db94393170be8710ee62,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af4d0271cc17db94393170be8710ee62,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 39.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af4d0271cc17db94393170be8710ee62,
         type: 3}

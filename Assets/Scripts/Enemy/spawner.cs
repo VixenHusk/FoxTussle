@@ -11,9 +11,12 @@ public class spawner : MonoBehaviour
     private int contador = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         InvokeRepeating("Spawn", tiempoEntreSpawn, tiempoEntreSpawn);
+    }
+    void OnDisable() {
+        CancelInvoke("Spawn");
     }
 
     // Método para instanciar un enemigo y ajustar su posición

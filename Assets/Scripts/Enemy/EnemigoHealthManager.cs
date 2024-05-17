@@ -35,22 +35,29 @@ public class EnemigoHealthManager : MonoBehaviour
     {
         sliderSalud.value = salud;
     }
-    public void HacerPupa(int pupa){
-        salud-=pupa;
-        sliderSalud.value = salud;
+
+    public void HacerPupa(int pupa)
+    {
+        if (isDead) return; // No entra si el enemigo esta muerto
+
+        salud -= pupa;
         ActualizarSliderSalud();
-        //TODO meter en un Update??
-        if (salud<=0){
+
+        if (salud <= 0)
+        {
+            salud = 0; // evitamos que sea negativa
+            isDead = true; // Marca como muerto
             GanarExperienciaYDropItem();
         }
     }
+
     private void GanarExperienciaYDropItem()
     {
         gameManager.GanarExperiencia(100);
         animatorController.Die();
-        isDead = true;
         DropItem();
     }
+
     private void DropItem()
     {
         float randomValue = Random.value;

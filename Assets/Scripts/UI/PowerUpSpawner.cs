@@ -48,27 +48,7 @@ public class PowerUpSpawner : MonoBehaviour
             }
         }
         
-        /*
-        // Escoge un índice aleatorio dentro del rango de la lista
-        int randomIndex = Random.Range(0, objectsToSpawn.Length);
 
-        // Instancia el GameObject como hijo de este objeto
-        GameObject spawnedObject = Instantiate(objectsToSpawn[randomIndex], transform.position, Quaternion.identity, transform);
-
-        // Obtener el botón del objeto instanciado
-        Button buttonComponent = spawnedObject.GetComponentInChildren<Button>();
-
-        // Verificar si se encontró un botón en el objeto instanciado
-        if (buttonComponent != null)
-        {
-            // Agregar un listener de evento OnClick al botón
-            buttonComponent.onClick.AddListener(delegate { ApplyPowerUp(randomIndex); });
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró ningún botón en el objeto instanciado.");
-        }
-        */
     }
     
      // Método para obtener un índice único aleatorio
@@ -98,7 +78,7 @@ public class PowerUpSpawner : MonoBehaviour
             GameManager manager = gameManager.GetComponent<GameManager>();
             if (manager != null)
             {
-                /*Original
+                
                 switch (index)
                 {
                     case 0: // PowerUpHealthMax
@@ -116,32 +96,14 @@ public class PowerUpSpawner : MonoBehaviour
                     case 4: // FireOrb
                         manager.PowerUpFireOrb();
                         break;
-                    default:
-                        Debug.LogWarning("Índice de power-up no válido.");
-                        break;
-                }
-                */
-                                switch (index)
-                {
-                    case 0: // PowerUpHealthMax
-                        manager.PowerUpFireOrb();
-                        break;
-                    case 1: // PowerUpHealing
-                        manager.PowerUpFireOrb();
-                        break;
-                    case 2: // PowerUpSpeed
-                        manager.PowerUpFireOrb();
-                        break;
-                    case 3: // PowerUpAttraction
-                        manager.PowerUpFireOrb();
-                        break;
-                    case 4: // FireOrb
-                        manager.PowerUpFireOrb();
+                    case 5: // Shop
+                        manager.PowerUpShop();
                         break;
                     default:
                         Debug.LogWarning("Índice de power-up no válido.");
                         break;
                 }
+                
                 
             }
             else

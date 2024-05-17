@@ -32,20 +32,33 @@ public class EnemigoHealthManagerAI : MonoBehaviour
             Debug.LogError("No se ha encontrado el GameObject GameManager en la escena.");
         }
     }
-    public void HacerPupa(int pupa){
-        salud-=pupa;
+    void ActualizarSliderSalud()
+    {
         sliderSalud.value = salud;
-        if (salud<=0){
+    }
+
+    public void HacerPupa(int pupa)
+    {
+        if (isDead) return; // No entra si el enemigo esta muerto
+
+        salud -= pupa;
+        ActualizarSliderSalud();
+
+        if (salud <= 0)
+        {
+            salud = 0; // evitamos que sea negativa
+            isDead = true; // Marca como muerto
             GanarExperienciaYDropItem();
         }
     }
+
     private void GanarExperienciaYDropItem()
     {
         gameManager.GanarExperiencia(100);
         SmartEnemy.Die();
-        isDead = true;
         DropItem();
     }
+
     private void DropItem()
     {
         float randomValue = Random.value;

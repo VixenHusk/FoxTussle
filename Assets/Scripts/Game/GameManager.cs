@@ -38,8 +38,16 @@ public class GameManager : MonoBehaviour
     public GameObject prefabSistemaParticulas;
     public GameObject foxGameObject;
 
+    // Referencia a CargaEscenas
+    public CargaEscenas cargaEscenas;
     // POWER UPS - que agregan efectos
+
+    //FireOrbs
     public fireOrbs fireOrbsScript;
+
+    //Shop
+    public GameObject shrineDoor;
+    public Vector3 doorOffset; // El offset para que aparezca la puerta
 
     private static string KEY_COINS = "COINS";
 
@@ -110,6 +118,7 @@ public class GameManager : MonoBehaviour
         {
             salud = 0;
             print("Se acabo el juego");
+            cargaEscenas.JugadorHaMuerto();
             TerminarJuego();
         }
         ActualizarBarraDeSalud();
@@ -139,12 +148,14 @@ public class GameManager : MonoBehaviour
     
     void PauseGame()
     {
+        Cursor.visible = true;
         levelPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
+        Cursor.visible = false;
         levelPanel.SetActive(false);
         Time.timeScale = 1;
     }
@@ -191,6 +202,25 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogError("No se ha asignado el script fireOrbs en el Inspector.");
+        }
+    }
+
+    public void PowerUpShop()
+    {
+        // Verifica si el prefab de la puerta y el objeto del jugador están asignados
+        if (shrineDoor != null && foxGameObject != null)
+        {
+            // Calcula la posición de spawn de la puerta sumando el offset a la posición del jugador
+            Vector3 spawnPosition = foxGameObject.transform.position + doorOffset;
+            // Instancia la puerta en la posición calculada
+            Instantiate(shrineDoor, spawnPosition, Quaternion.identity);
+            // Reanuda el juego después de instanciar la puerta
+            ResumeGame();
+        }
+        else
+        {
+            // Imprime un mensaje de error si no se han asignado los objetos necesarios
+            Debug.LogError("shrineDoor o foxGameObject no están asignados en el Inspector.");
         }
     }
 

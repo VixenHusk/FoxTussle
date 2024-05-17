@@ -10,9 +10,12 @@ public class TrapCalamari : MonoBehaviour
     public float activationInterval = 60f; // Intervalo de tiempo entre activaciones
     public float activeDuration = 30f; // Duración durante la cual el objeto está activado
 
-    private void Start()
+    void OnEnable()
     {
         StartCoroutine(ControlTrap());
+    }
+    void OnDisable(){
+        StopCoroutine(ControlTrap());
     }
 
     private IEnumerator ControlTrap()

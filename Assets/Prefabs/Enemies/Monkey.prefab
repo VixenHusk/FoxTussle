@@ -630,9 +630,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 150
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1425,7 +1425,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6909959677962603397, guid: 11a0c257ce7bc51408cc8e0668e4eb15,
     type: 3}
   dropProbability: 0.5
-  salud: 100
+  salud: 150
   isDead: 0
 --- !u!1 &8210531281274334030
 GameObject:

@@ -3,10 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class CargaEscenas : MonoBehaviour
 {
-    public GameObject[] objetosPersistentes;
+    // Variable no estática para asignar desde el Inspector
+    public GameObject[] objetosPersistentesInspector;
+
+    // Variable estática para usar en otros scripts
+    public static GameObject[] objetosPersistentes;
 
     private void Awake()
     {
+        // Asigna los objetos del Inspector a la variable estática
+        objetosPersistentes = objetosPersistentesInspector;
+
         foreach (GameObject obj in objetosPersistentes)
         {
             DontDestroyOnLoad(obj);

@@ -1,54 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BuscarGameObjects : MonoBehaviour
 {
-    private GameObject player;
-    private GameObject hud;
-    private GameObject camerasParent;
-    private GameObject enemiesParent;
-    private GameObject fireOrbsParent;
-    private GameObject gameManager;
-
-    private void Start()
+    void Awake()
     {
-        // Buscar el objeto "Player" por etiqueta
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        // Verifica si objetosPersistentes no es nulo
+        if (CargaEscenas.objetosPersistentes != null)
         {
-            Debug.LogError("No se encontró el objeto 'Player'.");
-        }
-        gameManager = GameObject.Find("GameManager");
-        if (gameManager == null)
-        {
-            Debug.LogError("No se encontró el objeto 'GameManager'.");
-        }
+            // Obtén la escena actual
+            Scene escenaActual = SceneManager.GetActiveScene();
 
-        // Buscar el objeto "HUD" por nombre
-        hud = GameObject.Find("HUD");
-        if (hud == null)
-        {
-            Debug.LogError("No se encontró el objeto 'HUD'.");
+            // Mueve los objetos persistentes a la escena actual
+            foreach (GameObject obj in CargaEscenas.objetosPersistentes)
+            {
+                SceneManager.MoveGameObjectToScene(obj, escenaActual);
+            }
         }
-
-        // Buscar el objeto "Cameras" bajo el objeto "HUD"
-        camerasParent = hud != null ? hud.transform.Find("Cameras").gameObject : null;
-        if (camerasParent == null)
+        else
         {
-            Debug.LogError("No se encontró el objeto 'Cameras' bajo el objeto 'HUD'.");
-        }
-
-        // Buscar el objeto "Enemies" por etiqueta
-        enemiesParent = GameObject.FindGameObjectWithTag("Enemies");
-        if (enemiesParent == null)
-        {
-            Debug.LogError("No se encontró el objeto 'Enemies'.");
-        }
-
-        // Buscar el objeto "FireOrbs" por etiqueta
-        fireOrbsParent = GameObject.FindGameObjectWithTag("FireOrbs");
-        if (fireOrbsParent == null)
-        {
-            Debug.LogError("No se encontró el objeto 'FireOrbs'.");
+            Debug.LogError("objetosPersistentes es nulo. Asegúrate de que CargaEscenas haya sido inicializado.");
         }
     }
 }

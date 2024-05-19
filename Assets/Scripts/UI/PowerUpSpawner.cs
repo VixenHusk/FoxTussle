@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PowerUpSpawner : MonoBehaviour
 {
@@ -10,13 +10,28 @@ public class PowerUpSpawner : MonoBehaviour
 
     void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        InitializeHUD();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitializeHUD();
+    }
+
+    private void InitializeHUD()
+    {
         ResetAvailableIndices();
         SpawnRandomObjects();
     }
 
     public void SpawnRandomObjects()
     {
-        // Verifica que haya al menos un GameObject en la lista
         if (objectsToSpawn.Length < 3)
         {
             Debug.LogError("No hay suficientes objetos en la lista para instanciar.");
@@ -31,7 +46,6 @@ public class PowerUpSpawner : MonoBehaviour
 
         DestroySpawnedObjects();
 
-        // Instancia tres prefabs aleatorios sin repetición
         for (int i = 0; i < 3; i++)
         {
             int randomIndex = GetUniqueRandomIndex();
@@ -47,19 +61,14 @@ public class PowerUpSpawner : MonoBehaviour
                 Debug.LogWarning("No se encontró ningún botón en el objeto instanciado.");
             }
         }
-        
-
     }
-    
-     // Método para obtener un índice único aleatorio
+
     private int GetUniqueRandomIndex()
     {
         int randomIndex = Random.Range(0, availableIndices.Count);
-        int index = availableIndices[randomIndex];
-        return index;
+        return availableIndices[randomIndex];
     }
 
-    // Método para reiniciar la lista de índices disponibles
     private void ResetAvailableIndices()
     {
         availableIndices.Clear();
@@ -69,7 +78,6 @@ public class PowerUpSpawner : MonoBehaviour
         }
     }
 
-    // Método para aplicar un power-up según el índice seleccionado
     private void ApplyPowerUp(int index)
     {
         GameObject gameManager = GameObject.Find("GameManager");
@@ -78,7 +86,6 @@ public class PowerUpSpawner : MonoBehaviour
             GameManager manager = gameManager.GetComponent<GameManager>();
             if (manager != null)
             {
-                
                 switch (index)
                 {
                     case 0: // PowerUpHealthMax
@@ -103,8 +110,6 @@ public class PowerUpSpawner : MonoBehaviour
                         Debug.LogWarning("Índice de power-up no válido.");
                         break;
                 }
-                
-                
             }
             else
             {
@@ -117,10 +122,8 @@ public class PowerUpSpawner : MonoBehaviour
         }
     }
 
-    // Método para destruir los objetos instanciados anteriores
     private void DestroySpawnedObjects()
     {
-        // Destruir todos los hijos del objeto PowerUpSpawner
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);

@@ -224,6 +224,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //seccion de Items
+
+    public void GetItemRabbit()
+    {
+        saludMaxima = saludMaxima + 150;
+        salud = saludMaxima;
+        ActualizarBarraDeSalud();
+    }
+
     public void TerminarJuego()
     {
         foreach (GameObject objeto in objetosAActivarCuandoGameOver)

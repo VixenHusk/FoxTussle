@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int nivel = 1;
     public float experiencia = 0;
     public float experienciaParaSiguienteNivel = 100;
-    public float distanciaAtraccion = 8;
+    public float distanciaAtraccion = 0.5f;
 
     //Valor monedas
     public int valor;

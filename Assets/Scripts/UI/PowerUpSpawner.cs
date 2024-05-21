@@ -106,6 +106,9 @@ public class PowerUpSpawner : MonoBehaviour
                     case 5: // Shop
                         manager.PowerUpShop();
                         break;
+                    case 6: // Regeneration
+                        manager.PowerUpRegeneration();
+                        break;
                     default:
                         Debug.LogWarning("Índice de power-up no válido.");
                         break;

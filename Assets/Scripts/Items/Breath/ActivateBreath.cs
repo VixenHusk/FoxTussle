@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivateBreath : MonoBehaviour
@@ -10,40 +9,51 @@ public class ActivateBreath : MonoBehaviour
     // Variable para activar o desactivar el comportamiento
     public bool IsActivated;
 
+    // Variable para almacenar la coroutine
+    private Coroutine activacionCoroutine;
+
     private void Start()
     {
         // Inicia el ciclo de activación/desactivación si IsActivated es verdadero
         if (IsActivated)
         {
-            EmpezarFuego();
+            activacionCoroutine = StartCoroutine(CicloActivacion());
         }
     }
 
     private void Update()
     {
         // Verifica si el estado de IsActivated ha cambiado en tiempo real
-        if (IsActivated && !IsInvoking("ActivarDesactivar"))
+        if (IsActivated && activacionCoroutine == null)
         {
-            EmpezarFuego();
+            activacionCoroutine = StartCoroutine(CicloActivacion());
         }
-        else if (!IsActivated && IsInvoking("ActivarDesactivar"))
+        else if (!IsActivated && activacionCoroutine != null)
         {
-            CancelInvoke("ActivarDesactivar");
+            StopCoroutine(activacionCoroutine);
+            activacionCoroutine = null;
+            if (targetObject != null)
+            {
+                targetObject.SetActive(false);
+            }
         }
     }
 
-    private void EmpezarFuego()
+    private IEnumerator CicloActivacion()
     {
-        // Comienza a invocar el método Toggle cada 5 segundos
-        InvokeRepeating("ActivarDesactivar", 0f, 5f);
-    }
-
-    private void ActivarDesactivar()
-    {
-        // Alterna el estado activo del GameObject objetivo
-        if (targetObject != null)
+        while (true)
         {
-            targetObject.SetActive(!targetObject.activeSelf);
+            if (targetObject != null)
+            {
+                targetObject.SetActive(true); // Activa el GameObject
+            }
+            yield return new WaitForSeconds(1.5f); // Espera 5 segundos
+
+            if (targetObject != null)
+            {
+                targetObject.SetActive(false); // Desactiva el GameObject
+            }
+            yield return new WaitForSeconds(5f); // Espera otros 5 segundos
         }
     }
 }

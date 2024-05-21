@@ -10,10 +10,14 @@ public class GameManager : MonoBehaviour
     //Atributos del juego
     public float salud;
     public int saludMaxima;
+    public float ratioDefensa = 1f;
     public int nivel = 1;
     public float experiencia = 0;
     public float experienciaParaSiguienteNivel = 100;
     public float distanciaAtraccion = 0.5f;
+    public int vidaExtra = 0;
+
+    public float multiplicadorEXP = 1;
 
     //Valor monedas
     public int valor;
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
     // Referencia a CargaEscenas
     public CargaEscenas cargaEscenas;
     // POWER UPS - que agregan efectos
+    private float cantidadRegeneracion = 0.75f;
+    public GameObject prefabRevivir;
 
     //FireOrbs
     public fireOrbs fireOrbsScript;
@@ -48,6 +54,9 @@ public class GameManager : MonoBehaviour
     //Shop
     public GameObject shrineDoor;
     public Vector3 doorOffset; // El offset para que aparezca la puerta
+
+    //VidaExtra
+    public GameObject textoVidaExtra;
 
     private static string KEY_COINS = "COINS";
 
@@ -85,7 +94,7 @@ public class GameManager : MonoBehaviour
     }
     private void ActualizarBarraDeSalud()
     {
-        imageVida.fillAmount = salud / 100;
+        imageVida.fillAmount = salud / saludMaxima;
     }
 
     private void ActualizarBarraDeExperiencia()
@@ -106,27 +115,75 @@ public class GameManager : MonoBehaviour
         this.textoMonedas.text = this.valor.ToString();
     }
 
-    public void DecrementarSalud(int decrementoSalud)
+public void DecrementarSalud(int decrementoSalud)
+{
+    // Asegúrate de que el ratio de defensa sea mayor que 0 para evitar divisiones por cero.
+    if (ratioDefensa <= 0)
     {
-        salud = salud - decrementoSalud;
-        if (salud >= saludMaxima)
-        {
-            salud = saludMaxima;
-        }
+        Debug.LogError("El ratio de defensa debe ser mayor que 0.");
+        return;
+    }
 
-        if (salud <= 0)
+    // Calcula el daño efectivo basado en el ratio de defensa.
+    float dañoEfectivo = decrementoSalud / ratioDefensa;
+
+    // Reduce la salud por el daño efectivo.
+    salud -= dañoEfectivo;
+
+    // Asegúrate de que la salud no supere el máximo permitido.
+    if (salud > saludMaxima)
+    {
+        salud = saludMaxima;
+    }
+
+    if (salud <= 0)
+    {
+        if (vidaExtra > 0)
+        {
+            UsarVidaExtra();
+        }
+        else
         {
             salud = 0;
             print("Se acabo el juego");
             cargaEscenas.JugadorHaMuerto();
             TerminarJuego();
         }
+    }
+
+    // Actualiza la barra de salud.
+    ActualizarBarraDeSalud();
+}
+
+    private void UsarVidaExtra()
+    {
+        vidaExtra--;
+        salud = saludMaxima;
         ActualizarBarraDeSalud();
+
+        if (prefabRevivir != null)
+        {
+            GameObject reviveEffect = Instantiate(prefabRevivir, foxGameObject.transform);
+            reviveEffect.transform.localPosition = Vector3.zero;
+        }
+
+        if (textoVidaExtra != null)
+        {
+            StartCoroutine(ActivateTextoVidaExtraForSeconds(textoVidaExtra, 1.5f));
+        }
+    }
+
+    private IEnumerator ActivateTextoVidaExtraForSeconds(GameObject textoVidaExtra, float seconds)
+    {
+        textoVidaExtra.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        textoVidaExtra.SetActive(false);
     }
 
     public void GanarExperiencia(int cantidad)
     {
-        experiencia += cantidad;
+        float experienciaTotal = cantidad * multiplicadorEXP;
+        experiencia += experienciaTotal;
         if (experiencia >= experienciaParaSiguienteNivel)
         {
             SubirNivel();
@@ -139,7 +196,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         nivel++;
         experiencia -= experienciaParaSiguienteNivel;
-        experienciaParaSiguienteNivel *= 2; // Ajusta esta fórmula según tus necesidades
+        experienciaParaSiguienteNivel *= 2f; // Ajusta esta fórmula según tus necesidades
         // Instanciar el prefab del sistema de partículas
         GameObject particulas = Instantiate(prefabSistemaParticulas, foxGameObject.transform.position, Quaternion.identity);
 
@@ -224,6 +281,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PowerUpRegeneration()
+    {
+        cantidadRegeneracion *= 2;
+
+        // Cancelar cualquier invocación previa de RegenerarSalud
+        CancelInvoke("RegenerarSalud");
+
+        // Iniciar la regeneración de salud
+        InvokeRepeating("RegenerarSalud", 0f, 2f);
+        
+        ResumeGame();
+    }
+
+    private void RegenerarSalud()
+    {
+        // Añade la cantidad de regeneración a la salud
+        salud += cantidadRegeneracion;
+
+        // Asegúrate de que la salud no supere el límite máximo
+        salud = Mathf.Min(salud, saludMaxima);
+
+        // Actualiza la barra de salud
+        ActualizarBarraDeSalud();
+    }
     //seccion de Items
 
     public void GetItemRabbit()

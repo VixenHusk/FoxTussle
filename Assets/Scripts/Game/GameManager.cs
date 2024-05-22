@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     //Valor monedas
     public int valor;
-    public int puntuacionMaxima = 0;
 
 
     //ESTO SE PUEDE HACER CON EVENTOS
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
     public Image imageVida;
     public Image imageExp;
     public TextMeshProUGUI textoMonedas;
-    public TextMeshProUGUI textoPuntuacionMaxima;
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoExperiencia;
 
@@ -113,6 +111,10 @@ public class GameManager : MonoBehaviour
     {
         this.valor += valor;
         this.textoMonedas.text = this.valor.ToString();
+    }
+    public bool CheckMonedas(int costo)
+    {
+        return valor >= costo;
     }
 
 public void DecrementarSalud(int decrementoSalud)

@@ -866,6 +866,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5770029958544358652}
+  - component: {fileID: 7456273996536932035}
+  - component: {fileID: 5984926431537960645}
   m_Layer: 0
   m_Name: ItemRabbit
   m_TagString: Untagged
@@ -889,6 +891,34 @@ Transform:
   - {fileID: 7997191768589220021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7456273996536932035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491060159312533817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eb3d43a262c134b8d779a7aa843dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 175
+--- !u!114 &5984926431537960645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491060159312533817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255da330175cdf4db2f4052acb2fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descripcion: Will heal up the Fox and grant 150 maxHP upon eating it
+  itemName: Sacred Rabbit
+  price: 50
 --- !u!1 &6596254556701563531
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,8 +947,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1388069427999905889}
   - {fileID: 2189967806875472835}
@@ -958,7 +988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd227859073c364ab766df31d702f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!1 &7551716728802647666
 GameObject:
   m_ObjectHideFlags: 0

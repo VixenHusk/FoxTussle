@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6464570923537998808}
@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 6464570923537998808}
   - component: {fileID: 3119482734036350714}
   - component: {fileID: 4234016490634483955}
+  - component: {fileID: -8982869775588272184}
+  - component: {fileID: -5886985282748117516}
   m_Layer: 0
   m_Name: ExtraLifeItem
   m_TagString: Untagged
@@ -110,9 +112,9 @@ Transform:
   m_GameObject: {fileID: 7389253307495695810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6487833225421213635}
   m_Father: {fileID: 0}
@@ -150,3 +152,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de2ad2f2db88514baf9282e91da180f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8982869775588272184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389253307495695810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eb3d43a262c134b8d779a7aa843dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 175
+--- !u!114 &-5886985282748117516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389253307495695810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255da330175cdf4db2f4052acb2fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descripcion: Gives an Extra Life to the Fox
+  itemName: Fox Masquerade
+  price: 200

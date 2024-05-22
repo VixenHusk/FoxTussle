@@ -6,9 +6,6 @@ public class AppleItem : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // Verificar si el objeto que entró en el trigger tiene el tag "Player"
-        if (other.CompareTag("Player"))
-        {
             // Encontrar el objeto GameManager en la escena
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -23,6 +20,6 @@ public class AppleItem : MonoBehaviour
             {
                 Debug.LogWarning("GameManager no encontrado en la escena.");
             }
-        }
+
     }
 }

@@ -509,6 +509,8 @@ GameObject:
   - component: {fileID: 6511295351815645123}
   - component: {fileID: 8597256072091118990}
   - component: {fileID: 5785987169715744985}
+  - component: {fileID: 3430714076552054169}
+  - component: {fileID: 4559505758047767660}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -525,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 3607875674174224065}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.12, y: 1.2, z: 7.66}
+  m_LocalPosition: {x: -12.12, y: 2, z: 7.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -565,6 +567,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500e518cb2bfa7045911d2e763fb329f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3430714076552054169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607875674174224065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eb3d43a262c134b8d779a7aa843dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 175
+--- !u!114 &4559505758047767660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607875674174224065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255da330175cdf4db2f4052acb2fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descripcion: Prevents 50% of the incoming damage
+  itemName: Shield of the Wind
+  price: 100
 --- !u!1 &6883286984678251489
 GameObject:
   m_ObjectHideFlags: 0

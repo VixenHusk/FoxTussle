@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2632540369571132229}
   - component: {fileID: 354243214734951429}
-  - component: {fileID: 6051676003958582754}
+  - component: {fileID: 8475465282693921316}
+  - component: {fileID: -4354732283779468306}
   m_Layer: 0
   m_Name: ExperienceApple
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3785331232206422589}
   m_Father: {fileID: 0}
@@ -55,7 +56,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &6051676003958582754
+--- !u!114 &8475465282693921316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,9 +65,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8852359319463675995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703be0a62041ca9499a530930a7cf182, type: 3}
+  m_Script: {fileID: 11500000, guid: 25eb3d43a262c134b8d779a7aa843dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 175
+--- !u!114 &-4354732283779468306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852359319463675995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255da330175cdf4db2f4052acb2fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descripcion: Fox will receive 75% extra experience
+  itemName: Apple of Experience
+  price: 40
 --- !u!1 &9204282701337912071
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
   m_LocalPosition: {x: 0, y: 0.26, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2632540369571132229}

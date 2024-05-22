@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7688081689231555900}
   - component: {fileID: 3115212331753959562}
   - component: {fileID: 3758159692784180465}
+  - component: {fileID: 2418875944606875301}
+  - component: {fileID: 5731263615313726511}
   m_Layer: 0
   m_Name: FireBreath
   m_TagString: Untagged
@@ -68,6 +70,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateBreath: {fileID: 0}
+--- !u!114 &2418875944606875301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167043191727142463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25eb3d43a262c134b8d779a7aa843dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 175
+--- !u!114 &5731263615313726511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167043191727142463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c255da330175cdf4db2f4052acb2fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descripcion: The Fox will start breathing fire each 5 seconds
+  itemName: Chili Pepper
+  price: 35
 --- !u!1 &5293028407387172046
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +126,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.68683153, y: 0.16811451, z: -0.1681145, w: 0.68683153}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 33, y: 33, z: 33}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7688081689231555900}

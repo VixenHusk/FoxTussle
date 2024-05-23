@@ -6,7 +6,10 @@ public class CaveTeleport : MonoBehaviour
     public string playerTag = "Player"; // Etiqueta del jugador
     public Vector3 newPosition = new Vector3(0, 0, 0); // Nueva posición del jugador
     public CargaEscenas cargaEscenas;
-    public bool dentroCueva=false;
+    public bool dentroCueva = false;
+
+    // Referencia al script PowerUpSpawner
+    public PowerUpSpawner powerUpSpawner;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,11 +17,11 @@ public class CaveTeleport : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             dentroCueva = true;
-            // Encuentra al jugador
+
+            // Encuentra al jugador y lo mueve a la nueva posición
             GameObject player = GameObject.FindGameObjectWithTag(playerTag);
             if (player != null)
             {
-                // Mueve al jugador a la nueva posición
                 player.transform.position = newPosition;
             }
 
@@ -31,8 +34,15 @@ public class CaveTeleport : MonoBehaviour
                     Destroy(enemy.gameObject);
                 }
             }
+
+            // Modifica la variable dentroCueva en el PowerUpSpawner
+            if (powerUpSpawner != null)
+            {
+                powerUpSpawner.dentroCueva = dentroCueva;
+            }
+
             // Carga la escena "DungeonScene"
-            SceneManager.LoadScene("DungeonScene"); 
+            SceneManager.LoadScene("DungeonScene");
         }
     }
 }

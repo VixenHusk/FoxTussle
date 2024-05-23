@@ -14237,8 +14237,6 @@ MonoBehaviour:
   vidaExtra: 0
   multiplicadorEXP: 1
   valor: 0
-  inTheCave: 0
-  caveTeleport: {fileID: 901369612}
   imageVida: {fileID: 686499537}
   imageExp: {fileID: 482064222}
   textoMonedas: {fileID: 194238836}
@@ -21738,6 +21736,7 @@ MonoBehaviour:
   newPosition: {x: 0, y: 0, z: 0}
   cargaEscenas: {fileID: 519862318}
   dentroCueva: 0
+  powerUpSpawner: {fileID: 2079195059}
 --- !u!135 &901369613
 SphereCollider:
   m_ObjectHideFlags: 0

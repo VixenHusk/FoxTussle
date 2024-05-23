@@ -11,26 +11,98 @@ public class ShopTeleport : MonoBehaviour
     private GameObject enemiesParent; // Referencia al GameObject "-- Enemies"
     private GameObject spawnersObject;
     private GameObject calamariTrap;
+    private SpawnerItem spawnerItem;
+    private PriceDetector priceDetector;
 
     private void Start()
     {
+        // Buscar y activar todos los GameObjects que tienen el script ItemDetector primero
+        ActivateAllItemDetectors();
+
+        // Ahora buscar los otros componentes necesarios
+        spawnerItem = FindObjectOfType<SpawnerItem>();
+        if (spawnerItem != null)
+        {
+            spawnerItem.SetShopItems();
+            Debug.Log("SpawnerItem encontrado y configurado.");
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto con el script SpawnerItem en la escena.");
+        }
+
+        priceDetector = FindObjectOfType<PriceDetector>();
+        if (priceDetector != null)
+        {
+            priceDetector.StartPrices();
+            Debug.Log("PriceDetector encontrado y configurado.");
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto con el script PriceDetector en la escena.");
+        }
+
         // Buscar el destino del teletransporte por nombre
         GameObject destinationObject = GameObject.Find(teleportDestinationName);
         if (destinationObject != null)
         {
             teleportDestination = destinationObject.transform;
+            Debug.Log("Destino de teletransporte encontrado: " + teleportDestinationName);
         }
         else
         {
             Debug.LogError("No se encontró un objeto con el nombre: " + teleportDestinationName);
         }
+
+        // Buscar el GameObject "-- CalamariTrap" por nombre
         calamariTrap = GameObject.Find("-- CalamariTrap");
+        if (calamariTrap != null)
+        {
+            Debug.Log("CalamariTrap encontrado.");
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto con el nombre: -- CalamariTrap");
+        }
+
+        // Buscar el GameObject "-- Spawners" por nombre
         spawnersObject = GameObject.Find("-- Spawners");
+        if (spawnersObject != null)
+        {
+            Debug.Log("-- Spawners encontrado.");
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto con el nombre: -- Spawners");
+        }
+
         // Buscar el GameObject "-- Enemies" por nombre
         enemiesParent = GameObject.Find("-- Enemies");
-        if (enemiesParent == null)
+        if (enemiesParent != null)
+        {
+            Debug.Log("-- Enemies encontrado.");
+        }
+        else
         {
             Debug.LogError("No se encontró un objeto con el nombre: -- Enemies");
+        }
+    }
+
+    private void ActivateAllItemDetectors()
+    {
+        // Buscar todos los componentes ItemDetector en la escena, incluyendo objetos desactivados
+        ItemDetector[] itemDetectors = Resources.FindObjectsOfTypeAll<ItemDetector>();
+
+        foreach (ItemDetector detector in itemDetectors)
+        {
+            GameObject obj = detector.gameObject;
+            if (!obj.activeInHierarchy)
+            {
+                obj.SetActive(true);
+                Debug.Log("Activado GameObject con ItemDetector: " + obj.name);
+            }
+            // Asegúrate de que los objetos activos también inicien sus referencias si es necesario
+            detector.StartReferences();
         }
     }
 
@@ -56,11 +128,13 @@ public class ShopTeleport : MonoBehaviour
                 spawnersObject.SetActive(false);
             }
 
-            //Desactivar CalamariTrap
+            // Desactivar CalamariTrap
             if (calamariTrap != null)
             {
                 calamariTrap.SetActive(false);
-            } else{
+            } 
+            else
+            {
                 print("Error");
             }
         }

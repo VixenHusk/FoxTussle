@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnerItem : MonoBehaviour
 {
     public List<GameObject> prefabs; // Lista de prefabs que quieres instanciar
     public List<Transform> spawnPoints; // Lista de posiciones donde quieres instanciar los prefabs
 
     private List<GameObject> spawnedPrefabs = new List<GameObject>(); // Lista de prefabs ya instanciados
 
-    void Start()
+    public void SetShopItems()
     {
         SpawnPrefabsRandomly();
+        Debug.Log("Se han repuesto los objetos de la tienda");
     }
 
     void SpawnPrefabsRandomly()

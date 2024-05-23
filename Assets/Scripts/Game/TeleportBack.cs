@@ -11,14 +11,15 @@ public class TeleportBack : MonoBehaviour
         // Verificar si el objeto que entra en el trigger es el jugador
         if (other.CompareTag("Player"))
         {
-            
-            // Buscar el GameObject con el nombre "-- Enemies"
-            GameObject enemiesParent = GameObject.Find("-- Enemies");
-            if (enemiesParent == null)
+            // Buscar todos los objetos con el componente ItemDetector en la escena
+            ItemDetector[] itemDetectors = FindObjectsOfType<ItemDetector>();
+
+            // Recorrer todos los objetos con ItemDetector y destruir sus hijos
+            foreach (ItemDetector itemDetector in itemDetectors)
             {
-                Debug.LogError("No se encontró un objeto con el nombre: -- Enemies");
-                return; // Salir del método si no se encuentra el objeto
+                DestroyChildren(itemDetector.gameObject);
             }
+
             //activa spawners
             spawners.SetActive(true);
             //activa calamari
@@ -34,15 +35,32 @@ public class TeleportBack : MonoBehaviour
                 other.transform.position = teleportPosition;
 
                 // Descongelar los GameObjects hijos del GameObject "-- Enemies"
-                foreach (Transform enemy in enemiesParent.transform)
+                GameObject enemiesParent = GameObject.Find("-- Enemies");
+                if (enemiesParent != null)
                 {
-                    UnfreezeGameObject(enemy.gameObject);
+                    foreach (Transform enemy in enemiesParent.transform)
+                    {
+                        UnfreezeGameObject(enemy.gameObject);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("No se encontró un objeto con el nombre: -- Enemies");
                 }
             }
             else
             {
                 Debug.LogError("No se encontró un objeto con el nombre: " + shrineDoorName);
             }
+        }
+    }
+
+    private void DestroyChildren(GameObject parent)
+    {
+        // Destruir todos los hijos del GameObject
+        foreach (Transform child in parent.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

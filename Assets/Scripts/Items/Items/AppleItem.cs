@@ -13,7 +13,7 @@ public class AppleItem : MonoBehaviour
             if (gameManager != null)
             {
                 // Modificar la variable ratioDefensa del GameManager
-                gameManager.multiplicadorEXP = 1.75f;
+                gameManager.multiplicadorEXP += 0.75f;
                 Destroy(gameObject);
             }
             else

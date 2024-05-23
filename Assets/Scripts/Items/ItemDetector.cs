@@ -21,26 +21,30 @@ public class ItemDetector : MonoBehaviour
     public ShieldItem shieldItem;
     private GameManager gameManager; // Referencia al GameManager
 
-    private void Start()
+    public void StartReferences()
     {
-Invoke("AssignReferences", 0.5f);
+        Invoke("AssignReferences", 0.5f);
+        Debug.Log($"[{gameObject.name}] Se han repuesto las funciones de la tienda");
     }
-private void AssignReferences()
-{
-    // Obtener la referencia al GameManager
-    gameManager = FindObjectOfType<GameManager>();
-    appleItem = FindObjectOfType<AppleItem>();
-    extraLifeItem = FindObjectOfType<ExtraLifeItem>();
-    rabbitItem = FindObjectOfType<RabbitItem>();
-    breathItem = FindObjectOfType<BreathItem>();
-    shieldItem = FindObjectOfType<ShieldItem>();
-}
+
+    private void AssignReferences()
+    {
+        // Obtener la referencia al GameManager
+        gameManager = FindObjectOfType<GameManager>();
+        appleItem = FindObjectOfType<AppleItem>();
+        extraLifeItem = FindObjectOfType<ExtraLifeItem>();
+        rabbitItem = FindObjectOfType<RabbitItem>();
+        breathItem = FindObjectOfType<BreathItem>();
+        shieldItem = FindObjectOfType<ShieldItem>();
+        Debug.Log($"[{gameObject.name}] Referencias asignadas");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag))
         {
             playerEntered = true;
-            Debug.Log("Se va a mostrar descripción");
+            Debug.Log($"[{gameObject.name}] Se va a mostrar descripción");
 
             // Buscar el hijo con el script ItemDescription y obtener la variable descripcion
             ItemDescription itemDescription = GetComponentInChildren<ItemDescription>();
@@ -53,10 +57,11 @@ private void AssignReferences()
                 // Mostrar la descripción en el TextMeshPro
                 itemText.text = itemName;
                 descriptionText.text = descripcion;
+                Debug.Log($"[{gameObject.name}] Descripción mostrada: {itemName} - {descripcion}");
             }
             else
             {
-                Debug.Log("No se encontró el componente ItemDescription en el hijo.");
+                Debug.Log($"[{gameObject.name}] No se encontró el componente ItemDescription en el hijo.");
             }
         }
     }
@@ -71,6 +76,7 @@ private void AssignReferences()
 
             descriptionText.text = string.Empty;
             itemText.text = string.Empty;
+            Debug.Log($"[{gameObject.name}] Descripción limpia");
         }
     }
 
@@ -78,7 +84,7 @@ private void AssignReferences()
     {
         if (playerEntered && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Intento de compra");
+            Debug.Log($"[{gameObject.name}] Intento de compra");
 
             // Verificar si el jugador tiene suficientes monedas para comprar el objeto
             if (gameManager != null && gameManager.CheckMonedas(price))
@@ -89,15 +95,24 @@ private void AssignReferences()
                 // Llamar al método Activar() del item correspondiente
                 ActivarItem();
 
-                // Destruir el objeto al que se le hizo trigger
-                Destroy(gameObject);
-                Debug.Log("Objeto comprado");
+                // Destruir todos los hijos del GameObject al que se le hizo trigger
+                DestroyChildren(gameObject);
+                Debug.Log($"[{gameObject.name}] Todos los hijos destruidos");
+                Debug.Log($"[{gameObject.name}] Objeto comprado");
             }
             else
             {
-                //sonido erroneo???
-                Debug.Log("No tienes suficientes monedas para comprar este objeto.");
+                Debug.Log($"[{gameObject.name}] No tienes suficientes monedas para comprar este objeto. Precio: {price}");
             }
+        }
+    }
+
+    private void DestroyChildren(GameObject parent)
+    {
+        // Destruir todos los hijos del GameObject
+        foreach (Transform child in parent.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
@@ -134,7 +149,7 @@ private void AssignReferences()
 
             // Agrega más casos para los otros items según sea necesario
             default:
-                Debug.LogWarning("Nombre de item desconocido: " + itemName);
+                Debug.LogWarning($"Nombre de item desconocido: {itemName}");
                 break;
         }
     }

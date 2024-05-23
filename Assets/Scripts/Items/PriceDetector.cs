@@ -9,9 +9,10 @@ public class PriceDetector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemPrice2;
     [SerializeField] private TextMeshProUGUI itemPrice3;
 
-    private void Start()
+    public void StartPrices()
     {
         StartCoroutine(DelayedPriceUpdate());
+        Debug.Log("Se han repuesto los precios de la tienda");
     }
 
     IEnumerator DelayedPriceUpdate()

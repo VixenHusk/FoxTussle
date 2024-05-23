@@ -17,14 +17,12 @@ public class BreathItem : MonoBehaviour
             Debug.LogError("ActivateBreath no encontrado en la escena.");
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void Activar()
     {
-        // Verifica si el objeto que entra en el trigger tiene una etiqueta específica
-        if (other.CompareTag("Player"))
-        {
+
             // Cambia el valor de IsActivated
             activateBreath.IsActivated = !activateBreath.IsActivated;
-            Destroy(gameObject);
-        }
+        
     }
 }

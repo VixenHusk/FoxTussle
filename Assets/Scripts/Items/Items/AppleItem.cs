@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AppleItem : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public void Activar()
     {
             // Encontrar el objeto GameManager en la escena
             GameManager gameManager = FindObjectOfType<GameManager>();

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 354243214734951429}
   - component: {fileID: 8475465282693921316}
   - component: {fileID: -4354732283779468306}
+  - component: {fileID: -5371488999908803570}
   m_Layer: 0
   m_Name: ExperienceApple
   m_TagString: Untagged
@@ -84,6 +85,18 @@ MonoBehaviour:
   descripcion: Fox will receive 75% extra experience
   itemName: Apple of Experience
   price: 40
+--- !u!114 &-5371488999908803570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852359319463675995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703be0a62041ca9499a530930a7cf182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9204282701337912071
 GameObject:
   m_ObjectHideFlags: 0

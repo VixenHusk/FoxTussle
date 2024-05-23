@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ShieldItem : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+
+    public void Activar()
     {
-        // Verificar si el objeto que entró en el trigger tiene el tag "Player"
-        if (other.CompareTag("Player"))
-        {
+
             // Encontrar el objeto GameManager en la escena
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -23,6 +22,6 @@ public class ShieldItem : MonoBehaviour
             {
                 Debug.LogWarning("GameManager no encontrado en la escena.");
             }
-        }
+        
     }
 }

@@ -14,14 +14,27 @@ public class ItemDetector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI itemText;
 
+    public AppleItem appleItem;
+    public ExtraLifeItem extraLifeItem;
+    public RabbitItem rabbitItem;
+    public BreathItem breathItem;
+    public ShieldItem shieldItem;
     private GameManager gameManager; // Referencia al GameManager
 
     private void Start()
     {
-        // Obtener la referencia al GameManager
-        gameManager = FindObjectOfType<GameManager>();
+Invoke("AssignReferences", 0.5f);
     }
-
+private void AssignReferences()
+{
+    // Obtener la referencia al GameManager
+    gameManager = FindObjectOfType<GameManager>();
+    appleItem = FindObjectOfType<AppleItem>();
+    extraLifeItem = FindObjectOfType<ExtraLifeItem>();
+    rabbitItem = FindObjectOfType<RabbitItem>();
+    breathItem = FindObjectOfType<BreathItem>();
+    shieldItem = FindObjectOfType<ShieldItem>();
+}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag))
@@ -61,48 +74,68 @@ public class ItemDetector : MonoBehaviour
         }
     }
 
-private void Update()
-{
-    if (playerEntered && Input.GetKeyDown(KeyCode.E))
+    private void Update()
     {
-        Debug.Log("Intento de compra");
-
-        // Verificar si el jugador tiene suficientes monedas para comprar el objeto
-        if (gameManager != null && gameManager.CheckMonedas(price))
+        if (playerEntered && Input.GetKeyDown(KeyCode.E))
         {
-            // Sustraer las monedas del GameManager
-            gameManager.Monedas(-price); // Pasar el costo del objeto como valor negativo
-            
-            // Llamar al método Activar() del item correspondiente
-            ActivarItem();
+            Debug.Log("Intento de compra");
 
-            // Destruir el objeto al que se le hizo trigger
-            Destroy(gameObject);
-            Debug.Log("Objeto comprado");
-        }
-        else
-        {
-            //sonido erroneo???
-            Debug.Log("No tienes suficientes monedas para comprar este objeto.");
+            // Verificar si el jugador tiene suficientes monedas para comprar el objeto
+            if (gameManager != null && gameManager.CheckMonedas(price))
+            {
+                // Sustraer las monedas del GameManager
+                gameManager.Monedas(-price); // Pasar el costo del objeto como valor negativo
+
+                // Llamar al método Activar() del item correspondiente
+                ActivarItem();
+
+                // Destruir el objeto al que se le hizo trigger
+                Destroy(gameObject);
+                Debug.Log("Objeto comprado");
+            }
+            else
+            {
+                //sonido erroneo???
+                Debug.Log("No tienes suficientes monedas para comprar este objeto.");
+            }
         }
     }
-}
 
-private void ActivarItem()
-{
-    // Aquí determina qué item se debe activar y llama a su método Activar()
-/*
-    switch (itemName)
+    private void ActivarItem()
     {
-        case "Item1":
-            Item1Script item1Script = GetComponent<Item1Script>();
-            // Por ejemplo:
-            // item1Script.Activar();
-            break;
-        // Agrega más casos para los otros items según sea necesario
-        default:
-            Debug.LogWarning("Nombre de item desconocido: " + itemName);
-            break;
-    }*/
-}
+        // Aquí determina qué item se debe activar y llama a su método Activar()
+
+        switch (itemName)
+        {
+            case "Apple of Experience":
+                appleItem.Activar();
+                Debug.Log("Activando Apple of Experience");
+                break;
+
+            case "Fox Masquerade":
+                extraLifeItem.Activar();
+                Debug.Log("Activando Fox Masquerade");
+                break;
+
+            case "Sacred Rabbit":
+                rabbitItem.Activar();
+                Debug.Log("Activando Sacred Rabbit");
+                break;
+
+            case "Chili Pepper":
+                breathItem.Activar();
+                Debug.Log("Activando Chili Pepper");
+                break;
+
+            case "Shield of the Wind":
+                shieldItem.Activar();
+                Debug.Log("Activando Shield of the Wind");
+                break;
+
+            // Agrega más casos para los otros items según sea necesario
+            default:
+                Debug.LogWarning("Nombre de item desconocido: " + itemName);
+                break;
+        }
+    }
 }

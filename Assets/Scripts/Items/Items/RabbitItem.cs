@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class RabbitItem : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+
+    public void Activar()
     {
-        // Verificar si el objeto que entró en el trigger tiene el tag "Player"
-        if (other.CompareTag("Player"))
-        {
             // Encontrar el objeto GameManager en la escena
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -23,6 +21,6 @@ public class RabbitItem : MonoBehaviour
             {
                 Debug.LogWarning("GameManager no encontrado en la escena.");
             }
-        }
+        
     }
 }

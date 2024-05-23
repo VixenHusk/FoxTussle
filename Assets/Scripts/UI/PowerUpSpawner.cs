@@ -8,6 +8,8 @@ public class PowerUpSpawner : MonoBehaviour
     public GameObject[] objectsToSpawn; // Lista de GameObjects que se pueden instanciar
     private List<int> availableIndices = new List<int>(); // Lista de índices disponibles para instanciar
 
+    public bool dentroCueva = false;
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -65,8 +67,16 @@ public class PowerUpSpawner : MonoBehaviour
 
     private int GetUniqueRandomIndex()
     {
-        int randomIndex = Random.Range(0, availableIndices.Count);
-        return availableIndices[randomIndex];
+        if(dentroCueva == true){
+            int randomIndex = Random.Range(0, availableIndices.Count-1);
+            print(availableIndices.Count-1);
+            return availableIndices[randomIndex];
+
+        }else{
+            int randomIndex = Random.Range(0, availableIndices.Count);
+            print(availableIndices.Count-1);
+            return availableIndices[randomIndex];
+        }
     }
 
     private void ResetAvailableIndices()
@@ -103,11 +113,11 @@ public class PowerUpSpawner : MonoBehaviour
                     case 4: // FireOrb
                         manager.PowerUpFireOrb();
                         break;
-                    case 5: // Shop
-                        manager.PowerUpShop();
-                        break;
-                    case 6: // Regeneration
+                    case 5: // Regeneration
                         manager.PowerUpRegeneration();
+                        break;
+                    case 6: // Shop
+                        manager.PowerUpShop();
                         break;
                     default:
                         Debug.LogWarning("Índice de power-up no válido.");

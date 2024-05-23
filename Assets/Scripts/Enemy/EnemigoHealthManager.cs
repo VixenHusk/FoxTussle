@@ -11,6 +11,7 @@ public class EnemigoHealthManager : MonoBehaviour
     public float dropProbability = 0.5f; // La probabilidad de que el ítem se deje caer (0.0f - 1.0f)
 
     public int salud=100;
+    public int experiencia=100;
     public bool isDead = false;
 
     private Slider sliderSalud;
@@ -53,7 +54,7 @@ public class EnemigoHealthManager : MonoBehaviour
 
     private void GanarExperienciaYDropItem()
     {
-        gameManager.GanarExperiencia(100);
+        gameManager.GanarExperiencia(experiencia);
         animatorController.Die();
         DropItem();
     }

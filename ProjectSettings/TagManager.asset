@@ -9,6 +9,7 @@ TagManager:
   - fireorb
   - EnemyAI
   - InkBullet
+  - calamari
   layers:
   - Default
   - TransparentFX

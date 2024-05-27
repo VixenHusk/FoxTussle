@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefabs; // Lista de prefabs de enemigos
     public GameObject enemiesParent;
     public int numeroElementos;
     public int tiempoEntreSpawn;
@@ -23,7 +23,12 @@ public class spawner : MonoBehaviour
     void Spawn()
     {
         contador++;
-        GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation, enemiesParent.transform);
+
+        // Selecciona aleatoriamente un prefab de la lista
+        GameObject randomPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+
+        // Instancia el prefab seleccionado aleatoriamente
+        GameObject newEnemy = Instantiate(randomPrefab, transform.position, transform.rotation, enemiesParent.transform);
 
         if (contador >= numeroElementos)
         {

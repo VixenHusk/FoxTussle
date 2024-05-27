@@ -334,8 +334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11afaa146381d734ab82f8ecb55461f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7, type: 3}
+  - {fileID: 496088321035323391, guid: d940218bcf029d64bac8c25451285c6f, type: 3}
+  - {fileID: 496088321035323391, guid: 374d09eeb28687f48b16cf252c79cf59, type: 3}
   enemiesParent: {fileID: 572835897}
   numeroElementos: 1000
   tiempoEntreSpawn: 4
@@ -11319,8 +11321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11afaa146381d734ab82f8ecb55461f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7, type: 3}
+  - {fileID: 496088321035323391, guid: d940218bcf029d64bac8c25451285c6f, type: 3}
+  - {fileID: 496088321035323391, guid: 374d09eeb28687f48b16cf252c79cf59, type: 3}
   enemiesParent: {fileID: 572835897}
   numeroElementos: 1000
   tiempoEntreSpawn: 4
@@ -12124,8 +12128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11afaa146381d734ab82f8ecb55461f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7, type: 3}
+  - {fileID: 496088321035323391, guid: d940218bcf029d64bac8c25451285c6f, type: 3}
+  - {fileID: 496088321035323391, guid: 374d09eeb28687f48b16cf252c79cf59, type: 3}
   enemiesParent: {fileID: 572835897}
   numeroElementos: 1000
   tiempoEntreSpawn: 4
@@ -12832,7 +12838,7 @@ GameObject:
   - component: {fileID: 384373202}
   m_Layer: 0
   m_Name: Item3
-  m_TagString: Untagged
+  m_TagString: spawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14277,6 +14283,7 @@ MonoBehaviour:
   - {fileID: 526482177}
   - {fileID: 109168042}
   - {fileID: 2026778439}
+  - {fileID: 500960963}
 --- !u!114 &519862319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14979,8 +14986,8 @@ MonoBehaviour:
   trapObject: {fileID: 781208514}
   movingObject: {fileID: 748790960}
   targetTransform: {fileID: 543450653668380371}
-  activationInterval: 10
-  activeDuration: 25
+  activationInterval: 25
+  activeDuration: 10
 --- !u!1 &672831545
 GameObject:
   m_ObjectHideFlags: 0
@@ -15371,7 +15378,7 @@ GameObject:
   - component: {fileID: 733546583}
   m_Layer: 0
   m_Name: Item1
-  m_TagString: Untagged
+  m_TagString: spawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15687,8 +15694,9 @@ GameObject:
   m_Component:
   - component: {fileID: 781208516}
   - component: {fileID: 781208515}
+  - component: {fileID: 781208517}
   m_Layer: 0
-  m_Name: -- Spawners
+  m_Name: -- SpawnersCalamari
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15738,6 +15746,20 @@ Transform:
   - {fileID: 1702944899}
   m_Father: {fileID: 667117761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &781208517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781208514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becd76e706fdd7441b67b9c779800e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObjectName: Player
+  restPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &788504173
 GameObject:
   m_ObjectHideFlags: 0
@@ -22132,7 +22154,7 @@ GameObject:
   - component: {fileID: 1088267532}
   m_Layer: 0
   m_Name: Item2
-  m_TagString: Untagged
+  m_TagString: spawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22222,8 +22244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11afaa146381d734ab82f8ecb55461f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 812132691306534351, guid: b32edf9c261050b4e8efc359fdb60ba7, type: 3}
+  - {fileID: 496088321035323391, guid: d940218bcf029d64bac8c25451285c6f, type: 3}
+  - {fileID: 496088321035323391, guid: 374d09eeb28687f48b16cf252c79cf59, type: 3}
   enemiesParent: {fileID: 572835897}
   numeroElementos: 1000
   tiempoEntreSpawn: 4
@@ -64708,7 +64732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrineDoorName: ShrineDoor(Clone)
   spawners: {fileID: 2086781412}
-  calamari: {fileID: 0}
+  calamari: {fileID: 667117760}
 --- !u!1 &6234619641022013409
 GameObject:
   m_ObjectHideFlags: 0
@@ -70892,8 +70916,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 500960964}
   - {fileID: 519862316}
+  - {fileID: 500960964}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 543450653668380371}

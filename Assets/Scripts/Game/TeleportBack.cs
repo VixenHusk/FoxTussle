@@ -1,10 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleportBack : MonoBehaviour
 {
     public string shrineDoorName = "ShrineDoor"; // Nombre del GameObject que actúa como puerta del santuario
     public GameObject spawners;
     public GameObject calamari;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        calamari = GameObject.Find("-- CalamariTrap");
+
+        if (calamari == null)
+        {
+            Debug.LogError("Calamari no encontrado en la escena");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

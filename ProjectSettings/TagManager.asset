@@ -10,6 +10,7 @@ TagManager:
   - EnemyAI
   - InkBullet
   - calamari
+  - spawnPoints
   layers:
   - Default
   - TransparentFX

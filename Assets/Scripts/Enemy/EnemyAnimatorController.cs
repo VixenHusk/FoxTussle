@@ -68,6 +68,15 @@ public class EnemyAnimatorController : MonoBehaviour
         animator.ResetTrigger("Attack"); // Reiniciar el trigger de ataque para detener la animación de ataque
     }
 
+    public void isHitted()
+    {
+        if (isDead){
+            animator.ResetTrigger("isHit");
+        }else{
+        animator.SetTrigger("isHit");
+        }
+    }
+
     // Este método será llamado desde un AnimationEvent
     public void OnDeathAnimationEnd()
     {

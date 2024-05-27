@@ -39,6 +39,7 @@ public class EnemigoHealthManager : MonoBehaviour
 
     public void HacerPupa(int pupa)
     {
+        animatorController.isHitted();
         if (isDead) return; // No entra si el enemigo esta muerto
 
         salud -= pupa;

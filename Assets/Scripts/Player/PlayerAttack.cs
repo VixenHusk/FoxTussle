@@ -9,8 +9,10 @@ public class PlayerAttack : MonoBehaviour
     public float attackCooldown = 5f; // Tiempo de enfriamiento entre ataques
     public GameObject playerObject; // Referencia al GameObject del jugador
     public GameObject prefabTailSpinDmg;
+    public GameObject prefabTailSpinDmgSword;
     private GameObject tailSpinDmgInstance;
     public Transform transformAreaDmg;
+    public bool dobleAtaque = false;
 
     void Start()
     {
@@ -31,7 +33,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void StartAttack()
     {
+        if (dobleAtaque){
+        tailSpinDmgInstance = Instantiate(prefabTailSpinDmgSword, transformAreaDmg.position, transformAreaDmg.rotation, playerObject.transform);
+        } else {
         tailSpinDmgInstance = Instantiate(prefabTailSpinDmg, transformAreaDmg.position, transformAreaDmg.rotation, playerObject.transform);
+        }
     }
 
     // Método para manejar el evento de animación "EndAttack"

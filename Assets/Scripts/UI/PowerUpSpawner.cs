@@ -7,6 +7,7 @@ public class PowerUpSpawner : MonoBehaviour
 {
     public GameObject[] objectsToSpawn; // Lista de GameObjects que se pueden instanciar
     private List<int> availableIndices = new List<int>(); // Lista de índices disponibles para instanciar
+    public GameObject PanelPowerUI;
 
     public bool dentroCueva = false;
 
@@ -100,12 +101,58 @@ public class PowerUpSpawner : MonoBehaviour
                 {
                     case 0: // PowerUpHealthMax
                         manager.PowerUpHealthMax();
+
+                        if (PanelPowerUI != null)
+                        {
+                            GameObject prefabAInstanciar = Resources.Load<GameObject>("Prefabs/SpeedPowerUpUI");
+
+                            // Verificar si se cargó correctamente
+                            if (prefabAInstanciar != null)
+                            {
+                                // Instanciar el prefab como hijo del GameObject padre
+                                GameObject instanciaPrefab = Instantiate(prefabAInstanciar, PanelPowerUI.transform);
+                                
+                                // Puedes ajustar la posición, rotación u otras propiedades de la instancia si es necesario
+                                instanciaPrefab.transform.position = new Vector3(0, 0, 0); // Por ejemplo, establecer la posición en (0,0,0)
+                            }
+                            else
+                            {
+                                Debug.LogError("No se pudo cargar el prefab desde Resources");
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError("No se encontró el GameObject padre");
+                        }
                         break;
                     case 1: // PowerUpHealing
                         manager.PowerUpHealing();
                         break;
                     case 2: // PowerUpSpeed
                         manager.PowerUpSpeed();
+                        
+                        if (PanelPowerUI != null)
+                        {
+                            GameObject prefabAInstanciar = Resources.Load<GameObject>("Prefabs/SpeedPowerUpUI");
+
+                            // Verificar si se cargó correctamente
+                            if (prefabAInstanciar != null)
+                            {
+                                // Instanciar el prefab como hijo del GameObject padre
+                                GameObject instanciaPrefab = Instantiate(prefabAInstanciar, PanelPowerUI.transform);
+                                
+                                // Puedes ajustar la posición, rotación u otras propiedades de la instancia si es necesario
+                                instanciaPrefab.transform.position = new Vector3(0, 0, 0); // Por ejemplo, establecer la posición en (0,0,0)
+                            }
+                            else
+                            {
+                                Debug.LogError("No se pudo cargar el prefab desde Resources");
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError("No se encontró el GameObject padre");
+                        }
                         break;
                     case 3: // PowerUpAttraction
                         manager.PowerUpAttraction();

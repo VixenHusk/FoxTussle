@@ -6,6 +6,7 @@ public class CaveExit : MonoBehaviour
     public string playerTag = "Player"; // Etiqueta del jugador
     public Vector3 newPosition = new Vector3(-32, 0, 85); // Nueva posición del jugador
     public bool dentroCueva = true;
+    public LoadingScreen loadingScreen;
 
     // Referencia al script PowerUpSpawner
     private PowerUpSpawner powerUpSpawner;
@@ -58,7 +59,7 @@ public class CaveExit : MonoBehaviour
             }
 
             // Carga la escena "MainScene"
-            SceneManager.LoadScene("MainScene");
+            loadingScreen.LoadSceneAsync("MainScene");
         }
     }
 }

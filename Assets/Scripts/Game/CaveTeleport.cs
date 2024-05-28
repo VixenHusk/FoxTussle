@@ -7,6 +7,8 @@ public class CaveTeleport : MonoBehaviour
     public Vector3 newPosition = new Vector3(0, 0, 0); // Nueva posición del jugador
     public CargaEscenas cargaEscenas;
     public bool dentroCueva = false;
+    
+    public LoadingScreen loadingScreen;
 
     // Referencia al script PowerUpSpawner
     public PowerUpSpawner powerUpSpawner;
@@ -78,7 +80,7 @@ public class CaveTeleport : MonoBehaviour
             }
 
             // Carga la escena "DungeonScene"
-            SceneManager.LoadScene("DungeonScene");
+            loadingScreen.LoadSceneAsync("DungeonScene");
         }
     }
 }

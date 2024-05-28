@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI textoMonedas;
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoExperiencia;
+    public TextMeshProUGUI textoVida;
 
     public PlayerController playerController;
     public GameObject levelPanel;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
     private void ActualizarBarraDeSalud()
     {
         imageVida.fillAmount = salud / saludMaxima;
+        textoVida.text = salud + " / " + saludMaxima;
     }
 
     private void ActualizarBarraDeExperiencia()

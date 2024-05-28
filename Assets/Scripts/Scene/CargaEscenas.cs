@@ -10,7 +10,7 @@ public class CargaEscenas : MonoBehaviour
     public static GameObject[] objetosPersistentes;
 
     private static CargaEscenas instance;
-
+    public GameManager gameManager;
     private void Awake()
     {
         // Implementación del patrón Singleton
@@ -32,6 +32,9 @@ public class CargaEscenas : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // Asumiendo que cargaEscenas está en el mismo GameObject o en otro GameObject en la escena
+        gameManager = FindObjectOfType<GameManager>();
+
         // Suscribirse al evento SceneManager.sceneLoaded
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -46,6 +49,22 @@ public class CargaEscenas : MonoBehaviour
         {
             SceneManager.MoveGameObjectToScene(obj, escenaActual);
         }
+    }
+
+    public void FinDelJuego()
+    {
+        gameManager.AjustarMonedas();
+        
+        // Obtén la escena actual
+        Scene escenaActual = SceneManager.GetActiveScene();
+
+        // Mueve los objetos persistentes a la escena actual
+        foreach (GameObject obj in objetosPersistentes)
+        {
+            Destroy(obj);
+        }
+
+        
     }
 
     // Se llama cuando se destruye el objeto

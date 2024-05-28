@@ -7,13 +7,33 @@ public class Menu : MonoBehaviour
     public GameObject introPanel;
 
     public GameObject creditPanel;
+    public CargaEscenas cargaEscenas;
 
+    private void Start()
+    {
+        // Asumiendo que cargaEscenas está en el mismo GameObject o en otro GameObject en la escena
+        cargaEscenas = FindObjectOfType<CargaEscenas>();
+
+        if (cargaEscenas != null)
+        {
+            cargaEscenas.FinDelJuego();
+        }
+        else
+        {
+            Debug.LogError("cargaEscenas no está asignado.");
+        }
+
+    }
     public void IniciarJuego()
     {
         SceneManager.LoadScene(1);
     }
 
         public void VolverInicio()
+    {
+        SceneManager.LoadScene(0);
+    }
+        public void ResetGame()
     {
         SceneManager.LoadScene(0);
     }

@@ -324,11 +324,14 @@ public void DecrementarSalud(int decrementoSalud)
         {
             objeto.SetActive(true);
         }
+        AjustarMonedas();
+    }
 
-            PlayerPrefs.SetInt(KEY_COINS, valor);
+    public void AjustarMonedas()
+    {
+        PlayerPrefs.SetInt(KEY_COINS, valor);
 
-            PlayerPrefs.Save();
-
+        PlayerPrefs.Save();
     }
 
     public void ReiniciarJuego()

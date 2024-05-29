@@ -294,9 +294,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 150
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -958,8 +958,8 @@ GameObject:
   - component: {fileID: 1541748728060467643}
   - component: {fileID: 4501315398557875766}
   - component: {fileID: 3994952764951052939}
-  - component: {fileID: 2323259047442202100}
   - component: {fileID: 6062750267348315178}
+  - component: {fileID: 395761894795263934}
   m_Layer: 0
   m_Name: Skelly
   m_TagString: EnemyAI
@@ -1008,7 +1008,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1061,8 +1061,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  patrullajeAleatorio: 0
-  tiempoEspera: 0.75
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  patrullajeAleatorio: 1
+  tiempoEspera: 0.5
 --- !u!114 &3994952764951052939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,28 +1085,6 @@ MonoBehaviour:
   speed: 5
   followDistance: 15
   attackDistance: 2
---- !u!195 &2323259047442202100
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4581542073045329077}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 99
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.5
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &6062750267348315178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,9 +1101,31 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   itemPrefab: {fileID: 6909959677962603397, guid: 11a0c257ce7bc51408cc8e0668e4eb15,
     type: 3}
-  dropProbability: 0.5
-  salud: 5
+  dropProbability: 1
+  salud: 150
   isDead: 0
+--- !u!195 &395761894795263934
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581542073045329077}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4690780079864086211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,7 +1209,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e05f80c89d423f643bc8c309beff9154, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1564,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44d6e2ffcf4a3444afbed81d9b61c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  danyo: 1
+  danyo: 3
   frecuencia: 0.1
 --- !u!1 &6754687718123733561
 GameObject:

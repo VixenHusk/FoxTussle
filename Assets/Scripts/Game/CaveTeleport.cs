@@ -7,9 +7,9 @@ public class CaveTeleport : MonoBehaviour
     public Vector3 newPosition = new Vector3(0, 0, 0); // Nueva posición del jugador
     public CargaEscenas cargaEscenas;
     public bool dentroCueva = false;
+    public SpawnerEnemy spawnerEnemy;
     
     public LoadingScreen loadingScreen;
-
     // Referencia al script PowerUpSpawner
     public PowerUpSpawner powerUpSpawner;
     void OnEnable()
@@ -21,6 +21,10 @@ public class CaveTeleport : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    void Start()
+    {
+        spawnerEnemy = FindObjectOfType<SpawnerEnemy>();
+    }
     GameObject FindInactiveObjectByName(string name)
     {
         Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
@@ -54,6 +58,7 @@ public class CaveTeleport : MonoBehaviour
         // Verificar si el objeto que entra en el trigger es el jugador
         if (other.CompareTag(playerTag))
         {
+            spawnerEnemy.SetActive(false);
             dentroCueva = true;
 
             // Encuentra al jugador y lo mueve a la nueva posición
@@ -83,4 +88,5 @@ public class CaveTeleport : MonoBehaviour
             loadingScreen.LoadSceneAsync("DungeonScene");
         }
     }
+    
 }

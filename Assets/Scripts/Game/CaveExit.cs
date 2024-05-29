@@ -33,6 +33,18 @@ public class CaveExit : MonoBehaviour
         // Verificar si el objeto que entra en el trigger es el jugador
         if (other.CompareTag(playerTag))
         {
+            
+        // Buscar y activar el objeto "-- Spawners" que está desactivado y en DontDestroyOnLoad
+        GameObject spawnersObject = FindInactiveObjectByName("-- Spawners");
+        if (spawnersObject != null)
+        {
+            spawnersObject.SetActive(true);
+            Debug.Log("-- Spawners activado");
+        }
+        else
+        {
+            Debug.LogWarning("-- Spawners no encontrado");
+        }
             dentroCueva = false;
 
             // Encuentra al jugador y lo mueve a la nueva posición
@@ -61,5 +73,18 @@ public class CaveExit : MonoBehaviour
             // Carga la escena "MainScene"
             loadingScreen.LoadSceneAsync("MainScene");
         }
+    }
+
+    private GameObject FindInactiveObjectByName(string name)
+    {
+        Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>();
+        foreach (Transform obj in objs)
+        {
+            if (obj.hideFlags == HideFlags.None && obj.name == name)
+            {
+                return obj.gameObject;
+            }
+        }
+        return null;
     }
 }

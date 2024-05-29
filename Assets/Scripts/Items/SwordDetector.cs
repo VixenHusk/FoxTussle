@@ -22,15 +22,33 @@ public class SwordDetector : MonoBehaviour
         if (player != null)
         {
             playerAttack = player.GetComponent<PlayerAttack>();
-            // Buscar el objeto Frostmourne en los hijos del jugador
-            frostmourne = player.transform.Find("Frostmourne").gameObject;
-            
+            // Buscar el objeto Frostmourne en los hijos del jugador de manera recursiva
+            frostmourne = FindChildRecursive(player.transform, "Frostmourne");
+
             Transform sword2Transform = transform.parent.Find("Sword2");
             if (sword2Transform != null)
             {
                 sword2 = sword2Transform.gameObject;
             }
         }
+    }
+
+    // Método recursivo para encontrar un hijo por nombre
+    GameObject FindChildRecursive(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName)
+            {
+                return child.gameObject;
+            }
+            GameObject result = FindChildRecursive(child, childName);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+        return null;
     }
 
     // Este método se llama cuando otro collider entra en el trigger de este GameObject
